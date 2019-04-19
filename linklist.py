@@ -38,6 +38,7 @@ class linklist:
 					self.show()
 					break
 			else:
+				#more than one node present 
 				n_node=p_node.next
 				if p_node.value==v:
 					print("Deleting node:",p_node.value)
