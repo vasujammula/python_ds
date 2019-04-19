@@ -1,63 +1,57 @@
 class node:
-	def __init__(self,value,next=None):
-		self.value=value
-		self.next=next
+	def __init__(self,v):
+		self.value=v
+		self.next=None
+
 class linklist:
 	def __init__(self):
 		self.head=None
-	def add(self):
-		v=input("Enter value of Node")
+	def add(self,v):
 		n=node(v)
 		n.next=self.head
 		self.head=n
-	def size(self):
-		c=0
+		self.show()
+	def show(self):
 		c_node=self.head
 		while(True):
 			if c_node==None:
-				print("No nodes in list so far")
+				print("Nothing to Display!!!")
 				break
-			elif c_node.next==None:
-				c=c+1
-				break	
-			else:
-				c=c+1
+			elif c_node.next!=None:
+				print("Current Node is :",c_node.value)
 				c_node=c_node.next
-		print("No of Nodes!!!:"+str(c))
-	def display(self):
-		c_node=self.head
-		while(True):
-			if c_node==None:
-				print("Nothing to Display!!!!")
-				break
 			else:
-				print("This is one of the value")
-				print(c_node.value)
-				if c_node.next==None:
+				print("Current Node is :",c_node.value)
+				break
+	def rem(self,v):
+		p_node=self.head
+		while(True):
+			if p_node.next==None:
+				#only one node scenario  
+				if p_node.value==v:
+					print("Deleting the Node :",p_node.value)
+					self.head=None
+					self.show()
 					break
 				else:
-					c_node=c_node.next
-	def delete(self):
-		print("Enter Node to delete")
-		v=input()
-		p_node=self.head		
-		while(True):
-			if p_node==None:
-				print("Noting to delete")
-				break
-			elif p_node.next!=None:
-				c_node=p_node.next
-				if p_node.value==v:
-					print("Deleting ...",p_node.value)
-					self.head=c_node
+					print("Element Not found in link list")
+					self.show()
 					break
-				elif c_node.value==v:
-					print("Deleting ...",c_node.value)
-					p_node.next=c_node.next
-					break
-				elif p_node.next!=None:
-					p_node=p_node.next
 			else:
-				print("Deleted: ",p_node.value)
-				self.head=None
-				break
+				n_node=p_node.next
+				if p_node.value==v:
+					print("Deleting node:",p_node.value)
+					self.head=p_node.next
+					self.show()
+					break
+				else:
+					if n_node.value==v:
+						p_node.next=n_node.next
+						print("Deleting Node :",n_node.value)
+						self.show()
+						break
+					else:
+						p_node=p_node.next
+						
+						
+			
